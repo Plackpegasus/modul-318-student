@@ -26,7 +26,7 @@ namespace SwissTransport
             string result;
 
             result = From.Station.Name + "\t" + To.Station.Name + "\t" + Duration;
-
+            
             return result;
         }
     }
