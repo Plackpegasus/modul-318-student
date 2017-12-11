@@ -19,6 +19,16 @@ namespace SwissTransport
 
         [JsonProperty("duration")]
         public string Duration { get; set; }
+
+       
+        public override string ToString()
+        {
+            string result;
+
+            result = From.Station.Name + "\t" + To.Station.Name + "\t" + Duration;
+
+            return result;
+        }
     }
 
     public class ConnectionPoint
