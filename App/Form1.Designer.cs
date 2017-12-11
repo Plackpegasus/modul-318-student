@@ -39,29 +39,29 @@
             this.timePicker = new System.Windows.Forms.DateTimePicker();
             this.btnChange = new System.Windows.Forms.Button();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.datatableResult = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Abfahrtsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.datatableResult = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataTableBoard = new System.Windows.Forms.DataGridView();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Abfahrtsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).BeginInit();
+            this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableBoard)).BeginInit();
             this.SuspendLayout();
             // 
             // txtStart
@@ -131,21 +131,21 @@
             // 
             // timePicker
             // 
-            this.timePicker.Location = new System.Drawing.Point(479, 93);
+            this.timePicker.Location = new System.Drawing.Point(547, 98);
             this.timePicker.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
             this.timePicker.Name = "timePicker";
-            this.timePicker.Size = new System.Drawing.Size(200, 20);
+            this.timePicker.Size = new System.Drawing.Size(132, 20);
             this.timePicker.TabIndex = 10;
-            this.timePicker.Value = new System.DateTime(2017, 12, 11, 13, 40, 20, 0);
+            this.timePicker.Value = new System.DateTime(2017, 12, 11, 21, 57, 0, 0);
             // 
             // btnChange
             // 
             this.btnChange.BackColor = System.Drawing.SystemColors.Control;
-            this.btnChange.Image = global::App.Properties.Resources.icon_change;
             this.btnChange.Location = new System.Drawing.Point(241, 52);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(44, 34);
             this.btnChange.TabIndex = 8;
+            this.btnChange.Text = "<---->";
             this.btnChange.UseVisualStyleBackColor = false;
             this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
@@ -153,27 +153,27 @@
             // 
             this.form1BindingSource.DataSource = typeof(App.Form1);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(62, 209);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(426, 299);
-            this.tabControl1.TabIndex = 11;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Location = new System.Drawing.Point(62, 209);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(426, 299);
+            this.tabControl.TabIndex = 11;
             // 
-            // tabPage2
+            // tabPage1
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(418, 273);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Abfahrtszeiten";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.datatableResult);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(418, 273);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Verbindungen";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // datatableResult
             // 
@@ -192,52 +192,6 @@
             this.datatableResult.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.datatableResult.Size = new System.Drawing.Size(412, 267);
             this.datatableResult.TabIndex = 9;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Dauer";
-            this.Column3.Name = "Column3";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Abfahrt";
-            this.Column2.Name = "Column2";
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "Ankunftsort";
-            this.Column1.Name = "Column1";
-            // 
-            // Abfahrtsort
-            // 
-            this.Abfahrtsort.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Abfahrtsort.Frozen = true;
-            this.Abfahrtsort.HeaderText = "Abfahrtsort";
-            this.Abfahrtsort.Name = "Abfahrtsort";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.datatableResult);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(418, 273);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Verbindungen";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(418, 273);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Karte";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Column4
             // 
@@ -267,20 +221,31 @@
             this.Column7.Name = "Column7";
             this.Column7.Width = 101;
             // 
-            // dataGridView1
+            // tabPage2
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tabPage2.Controls.Add(this.dataTableBoard);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(418, 273);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Abfahrtszeiten";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataTableBoard
+            // 
+            this.dataTableBoard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableBoard.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column8,
             this.Column10,
             this.Column9});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(412, 267);
-            this.dataGridView1.TabIndex = 0;
+            this.dataTableBoard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataTableBoard.Location = new System.Drawing.Point(3, 3);
+            this.dataTableBoard.MultiSelect = false;
+            this.dataTableBoard.Name = "dataTableBoard";
+            this.dataTableBoard.RowHeadersVisible = false;
+            this.dataTableBoard.Size = new System.Drawing.Size(412, 267);
+            this.dataTableBoard.TabIndex = 0;
             // 
             // Column8
             // 
@@ -303,13 +268,48 @@
             this.Column9.Name = "Column9";
             this.Column9.Width = 87;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(418, 273);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Karte";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Dauer";
+            this.Column3.Name = "Column3";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Abfahrt";
+            this.Column2.Name = "Column2";
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "Ankunftsort";
+            this.Column1.Name = "Column1";
+            // 
+            // Abfahrtsort
+            // 
+            this.Abfahrtsort.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Abfahrtsort.Frozen = true;
+            this.Abfahrtsort.HeaderText = "Abfahrtsort";
+            this.Abfahrtsort.Name = "Abfahrtsort";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(711, 520);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.timePicker);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.listBoxStop);
@@ -322,11 +322,11 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).EndInit();
+            this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableBoard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,7 +344,7 @@
         private System.Windows.Forms.ListBox listBoxStop;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.DateTimePicker timePicker;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView datatableResult;
@@ -357,7 +357,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataTableBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;

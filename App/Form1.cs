@@ -16,9 +16,6 @@ namespace App
         //Objekt transport erstellen
         Transport transport = new Transport();
 
-        //Objekt zur Zeitkonvertierung
-        DateTimeConverter timeConverter = new DateTimeConverter();
-
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +23,9 @@ namespace App
             //Fenstergrösse nicht ändern oder maximieren
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-        }
+
+            timePicker.Format = DateTimePickerFormat.Short;
+         }
 
         private void txtStart_TextChanged(object sender, EventArgs e)
         {
@@ -106,17 +105,42 @@ namespace App
             listBoxStart.Visible = false;
             listBoxStop.Visible = false;
 
-            //ist nur abfahrtstation eingegeben
+            showDeparture();
+            showConnections();
+        }
+
+        private void showDeparture()
+        {
             if (txtStart.Text != "" && txtStop.Text == "")
             {
-                //nur abfahrtstafel anzeigen
-                //showDeparture();
+                tabControl.SelectTab(tabPage1);
             }
-            if(txtStart.Text == "" && txtStop.Text == "")
+
+            //abfahrtstafel 
+            Stations station = transport.GetStations(txtStart.Text);
+
+            string id = station.StationList[0].Id;
+            StationBoardRoot stationBoard = transport.GetStationBoard(txtStart.Text, id);
+
+            foreach (StationBoard board in stationBoard.Entries)
+            {
+                var row = dataTableBoard.Rows.Add();
+
+                //in entsprechende zellen einfügen
+                dataTableBoard.Rows[row].Cells[0].Value = board.Name;
+                dataTableBoard.Rows[row].Cells[1].Value = board.To;
+
+            }
+
+        }
+
+        private void showConnections()
+        {
+            if (txtStart.Text == "" && txtStop.Text == "")
             {
                 MessageBox.Show("Bitte Abfahrt- und Ankunftsstation eingeben!");
             }
-            else //wenn nicht, verbindung suchen
+            if(txtStart.Text != "" && txtStop.Text != "") //wenn nicht, verbindung suchen
             {
                 //new connection
                 Connections verbindung = new Connections();
@@ -134,28 +158,6 @@ namespace App
                     datatableResult.Rows[row].Cells[3].Value = durationConvert(connection.Duration);
                 }
             }
-        }
-
-        private void showDeparture()
-        {
-            //abfahrtstafel 
-            Stations station = transport.GetStations(txtStart.Text);
-            Connections connec = transport.GetConnections(txtStart.Text, txtStop.Text);
-
-            string id = station.StationList[0].Id;
-            StationBoardRoot stationBoard = transport.GetStationBoard(txtStart.Text, id);
-
-            foreach(StationBoard board in stationBoard.Entries)
-            {
-                var row = datatableResult.Rows.Add();
-
-                //in entsprechende zellen einfügen
-                datatableResult.Rows[row].Cells[0].Value = board.Name;
-                datatableResult.Rows[row].Cells[1].Value = board.To;
-                //datatableResult.Rows[row].Cells[2].Value = 
-                //datatableResult.Rows[row].Cells[3].Value =
-            }
-
         }
 
         private string dateConvert(string date)
