@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtStart = new System.Windows.Forms.TextBox();
             this.txtStop = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +37,6 @@
             this.listBoxStop = new System.Windows.Forms.ListBox();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.btnChange = new System.Windows.Forms.Button();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.datatableResult = new System.Windows.Forms.DataGridView();
@@ -59,7 +57,6 @@
             this.timePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).BeginInit();
@@ -151,10 +148,6 @@
             this.btnChange.Text = "<---->";
             this.btnChange.UseVisualStyleBackColor = false;
             this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
-            // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(App.Form1);
             // 
             // tabControl
             // 
@@ -353,7 +346,6 @@
             this.Controls.Add(this.txtStart);
             this.Name = "Form1";
             this.Text = "ÖV-Verbindungen";
-            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datatableResult)).EndInit();
@@ -372,7 +364,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox listBoxStart;
-        private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.ListBox listBoxStop;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.DateTimePicker datePicker;
