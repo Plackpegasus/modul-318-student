@@ -13,145 +13,149 @@ namespace App
 {
     public partial class Form1 : Form
     {
-        //Objekt transport erstellen
         Transport transport = new Transport();
 
         public Form1()
         {
             InitializeComponent();
 
-            //Fenstergrösse nicht ändern oder maximieren
+            //Formatierung GUI Elemente
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
 
-            timePicker.Format = DateTimePickerFormat.Short;
-         }
+            datePicker.Format = DateTimePickerFormat.Short;
+            datePicker.Value = DateTime.Today;
 
-        private void txtStart_TextChanged(object sender, EventArgs e)
+            timePicker.Format = DateTimePickerFormat.Custom;
+            timePicker.CustomFormat = "HH:mm";
+            timePicker.Value = DateTime.Now;
+
+        }
+
+        private void txtStart_TextChanged(object sender, EventArgs e) //wenn Startstartion eingegeben wird
         {
-            //wenn txt geändert wird
             Stations station = new Stations();
 
-            //listbox leeren
             listBoxStart.Items.Clear();
 
             station = transport.GetStations(txtStart.Text);
             if (txtStart.Text != "")
             {
-                //wenn in txt geschrieben wird Vorschläge in listbox anzeigen
                 foreach (Station xstation in station.StationList)
                 {
                     listBoxStart.Visible = true;
                     listBoxStart.Items.Add(xstation.Name);
                 }
             }
-            else //wenn nicht listbox schliessen
+            else
             {
                 listBoxStart.Visible = false;
             }
         }
 
-        private void listBoxStart_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxStart_SelectedIndexChanged(object sender, EventArgs e) //Vorschläge für Startstation
         {
-            //nachdem ort ausgewählt, wird listbox geschlossen
             txtStart.Text = Convert.ToString(listBoxStart.SelectedItem);
             listBoxStart.Visible = false;
         }
 
-        private void txtStop_TextChanged(object sender, EventArgs e)
+        private void txtStop_TextChanged(object sender, EventArgs e) //wenn Endstation eingegeben wird
         {
-            //wenn txt geändert wird
             Stations station = new Stations();
 
-            //listbox leeren
             listBoxStop.Items.Clear();
 
             station = transport.GetStations(txtStop.Text);
 
             if (txtStop.Text != "")
             {
-                //wenn in txt geschrieben wird Vorschläge in listbox anzeigen
                 foreach (Station xstation in station.StationList)
                 {
                     listBoxStop.Visible = true;
                     listBoxStop.Items.Add(xstation.Name);
                 }
             }
-            else //wenn nicht listbox schliessen
+            else
             {
                 listBoxStop.Visible = false;
             }
         }
 
-        private void listBoxStop_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxStop_SelectedIndexChanged(object sender, EventArgs e) //Vorschläge für Endstation
         {
-            //nachdem ort ausgewählt, wird listbox geschlossen
             txtStop.Text = Convert.ToString(listBoxStop.SelectedItem);
             listBoxStop.Visible = false;
         }
 
-        private void btnChange_Click(object sender, EventArgs e)
+        private void btnChange_Click(object sender, EventArgs e) //Knopf "<--->" gedrückt
         {
             string station = txtStart.Text;
             txtStart.Text = txtStop.Text;
             txtStop.Text = station;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e) //Knopf "Verbindung suchnen" gedrückt
         {
-            //beim drücken von "verbindung suchen" knopf
-
-            //listboxen schliessen
             listBoxStart.Visible = false;
             listBoxStop.Visible = false;
 
-            showDeparture();
+            datatableResult.Rows.Clear();
+            datatableResult.Refresh();
+
+            dataTableBoard.Rows.Clear();
+            dataTableBoard.Refresh();
+
             showConnections();
+            showDeparture();
         }
 
-        private void showDeparture()
+        private void showDeparture() //nächste Abfahrtszeiten der Station anzeigen
         {
             if (txtStart.Text != "" && txtStop.Text == "")
             {
-                tabControl.SelectTab(tabPage1);
+                tabControl.SelectedIndex = 1;
             }
-
-            //abfahrtstafel 
-            Stations station = transport.GetStations(txtStart.Text);
-
-            string id = station.StationList[0].Id;
-            StationBoardRoot stationBoard = transport.GetStationBoard(txtStart.Text, id);
-
-            foreach (StationBoard board in stationBoard.Entries)
+            try //sind Abfahrts- und Ankunftsstation leer --> exception bei staion.StationList[].id
             {
-                var row = dataTableBoard.Rows.Add();
+                Stations station = transport.GetStations(txtStart.Text);
 
-                //in entsprechende zellen einfügen
-                dataTableBoard.Rows[row].Cells[0].Value = board.Name;
-                dataTableBoard.Rows[row].Cells[1].Value = board.To;
+                string id = station.StationList[0].Id;
+
+                StationBoardRoot stationBoard = transport.GetStationBoard(txtStart.Text, id, Convert.ToString(datetimeConvert(datePicker.Value, timePicker.Value)));
+
+                foreach (StationBoard board in stationBoard.Entries)
+                {
+                    var row = dataTableBoard.Rows.Add();
+
+                    dataTableBoard.Rows[row].Cells[0].Value = txtStart.Text;
+                    dataTableBoard.Rows[row].Cells[1].Value = board.Name;
+                    dataTableBoard.Rows[row].Cells[2].Value = board.To;
+                    dataTableBoard.Rows[row].Cells[3].Value = dateConvert(Convert.ToString(board.Stop.Departure));
+
+                }
+            }
+            catch (Exception)
+            {
 
             }
-
         }
 
-        private void showConnections()
+        private void showConnections() //Verbindungen anzeigen
         {
             if (txtStart.Text == "" && txtStop.Text == "")
             {
                 MessageBox.Show("Bitte Abfahrt- und Ankunftsstation eingeben!");
             }
-            if(txtStart.Text != "" && txtStop.Text != "") //wenn nicht, verbindung suchen
-            {
-                //new connection
-                Connections verbindung = new Connections();
-                verbindung.ConnectionList = transport.GetConnections(txtStart.Text, txtStop.Text).ConnectionList;
 
-                //für jede connection in list
+            if (txtStart.Text != "" && txtStop.Text != "")
+            {
+                Connections verbindung = new Connections();
+                verbindung.ConnectionList = transport.GetConnections(txtStart.Text, txtStop.Text, Convert.ToString(datePicker.Value), Convert.ToString(timePicker.Value)).ConnectionList;
+
                 foreach (var connection in verbindung.ConnectionList)
                 {
                     var row = datatableResult.Rows.Add();
 
-                    //in entsprechende zellen einfügen
                     datatableResult.Rows[row].Cells[0].Value = connection.From.Station.Name;
                     datatableResult.Rows[row].Cells[1].Value = connection.To.Station.Name;
                     datatableResult.Rows[row].Cells[2].Value = dateConvert(connection.From.Departure);
@@ -160,17 +164,23 @@ namespace App
             }
         }
 
-        private string dateConvert(string date)
-        {            
-            string sdate = Convert.ToString(Convert.ToDateTime(date)).Remove(16,3);
+        private string dateConvert(string date) //Konvertierung der Abfahrtszeit
+        {
+            string sdate = Convert.ToString(Convert.ToDateTime(date)).Remove(16, 3);
             return sdate;
         }
 
-        private string durationConvert(string time)
+        private string durationConvert(string time) //Konvertierung der Reisedauer
         {
             string s = time.Remove(0, 3);
             s = s.Remove(5, 3);
             return s;
+        }
+
+        private DateTime datetimeConvert(DateTime x, DateTime y) //Konvertiert date- und timePicker zu DateTime
+        {
+            DateTime fullDate = x.Date.Add(y.TimeOfDay);
+            return fullDate;
         }
     }
 }

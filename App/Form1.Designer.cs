@@ -36,7 +36,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.listBoxStart = new System.Windows.Forms.ListBox();
             this.listBoxStop = new System.Windows.Forms.ListBox();
-            this.timePicker = new System.Windows.Forms.DateTimePicker();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.btnChange = new System.Windows.Forms.Button();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -49,13 +49,16 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataTableBoard = new System.Windows.Forms.DataGridView();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Abfahrtsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timePicker = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -129,14 +132,14 @@
             this.listBoxStop.Visible = false;
             this.listBoxStop.SelectedIndexChanged += new System.EventHandler(this.listBoxStop_SelectedIndexChanged);
             // 
-            // timePicker
+            // datePicker
             // 
-            this.timePicker.Location = new System.Drawing.Point(547, 98);
-            this.timePicker.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
-            this.timePicker.Name = "timePicker";
-            this.timePicker.Size = new System.Drawing.Size(132, 20);
-            this.timePicker.TabIndex = 10;
-            this.timePicker.Value = new System.DateTime(2017, 12, 11, 21, 57, 0, 0);
+            this.datePicker.Location = new System.Drawing.Point(547, 98);
+            this.datePicker.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(132, 20);
+            this.datePicker.TabIndex = 10;
+            this.datePicker.Value = new System.DateTime(2017, 12, 11, 21, 57, 0, 0);
             // 
             // btnChange
             // 
@@ -157,11 +160,10 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Location = new System.Drawing.Point(62, 209);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(426, 299);
+            this.tabControl.Size = new System.Drawing.Size(479, 299);
             this.tabControl.TabIndex = 11;
             // 
             // tabPage1
@@ -170,13 +172,15 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(418, 273);
+            this.tabPage1.Size = new System.Drawing.Size(471, 273);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Verbindungen";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // datatableResult
             // 
+            this.datatableResult.AllowUserToResizeColumns = false;
+            this.datatableResult.AllowUserToResizeRows = false;
             this.datatableResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datatableResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
@@ -184,13 +188,12 @@
             this.Column6,
             this.Column7});
             this.datatableResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datatableResult.Enabled = false;
             this.datatableResult.Location = new System.Drawing.Point(3, 3);
             this.datatableResult.MultiSelect = false;
             this.datatableResult.Name = "datatableResult";
             this.datatableResult.RowHeadersVisible = false;
             this.datatableResult.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.datatableResult.Size = new System.Drawing.Size(412, 267);
+            this.datatableResult.Size = new System.Drawing.Size(465, 267);
             this.datatableResult.TabIndex = 9;
             // 
             // Column4
@@ -227,16 +230,19 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(418, 273);
+            this.tabPage2.Size = new System.Drawing.Size(471, 273);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Abfahrtszeiten";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataTableBoard
             // 
+            this.dataTableBoard.AllowUserToResizeColumns = false;
+            this.dataTableBoard.AllowUserToResizeRows = false;
             this.dataTableBoard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableBoard.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column8,
+            this.Column11,
             this.Column10,
             this.Column9});
             this.dataTableBoard.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -244,7 +250,7 @@
             this.dataTableBoard.MultiSelect = false;
             this.dataTableBoard.Name = "dataTableBoard";
             this.dataTableBoard.RowHeadersVisible = false;
-            this.dataTableBoard.Size = new System.Drawing.Size(412, 267);
+            this.dataTableBoard.Size = new System.Drawing.Size(465, 267);
             this.dataTableBoard.TabIndex = 0;
             // 
             // Column8
@@ -253,6 +259,13 @@
             this.Column8.HeaderText = "Station";
             this.Column8.Name = "Column8";
             this.Column8.Width = 65;
+            // 
+            // Column11
+            // 
+            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column11.HeaderText = "Linie";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 54;
             // 
             // Column10
             // 
@@ -267,16 +280,6 @@
             this.Column9.HeaderText = "Abfahrtszeit";
             this.Column9.Name = "Column9";
             this.Column9.Width = 87;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(418, 273);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Karte";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Column3
             // 
@@ -303,14 +306,43 @@
             this.Abfahrtsort.HeaderText = "Abfahrtsort";
             this.Abfahrtsort.Name = "Abfahrtsort";
             // 
+            // timePicker
+            // 
+            this.timePicker.Location = new System.Drawing.Point(547, 138);
+            this.timePicker.Name = "timePicker";
+            this.timePicker.ShowUpDown = true;
+            this.timePicker.Size = new System.Drawing.Size(132, 20);
+            this.timePicker.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(503, 104);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Datum";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(501, 144);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Uhrzeit";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(711, 520);
-            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.timePicker);
+            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.datePicker);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.listBoxStop);
             this.Controls.Add(this.listBoxStart);
@@ -320,7 +352,7 @@
             this.Controls.Add(this.txtStop);
             this.Controls.Add(this.txtStart);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ÖV-Verbindungen";
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -343,7 +375,7 @@
         private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.ListBox listBoxStop;
         private System.Windows.Forms.Button btnChange;
-        private System.Windows.Forms.DateTimePicker timePicker;
+        private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
@@ -352,15 +384,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Abfahrtsort;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridView dataTableBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DateTimePicker timePicker;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
